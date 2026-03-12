@@ -1,6 +1,10 @@
 package com.gildedrose.items;
 
 public class Backstage extends GuildedItem {
+    public Backstage(String name, int sellIn, int quality, boolean conjured) {
+        super(name, sellIn, quality, conjured);
+    }
+
     public Backstage(String name, int sellIn, int quality) {
         super(name, sellIn, quality);
     }
