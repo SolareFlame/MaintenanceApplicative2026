@@ -183,4 +183,23 @@ class GildedRoseTest {
 
 
 
+    @Test
+    void AgedBrieConjured1() {
+        GuildedItem[] items = new GuildedItem[] { new AgedBrie("Aged Brie", 0, 0, true) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+
+        assertEquals(4, app.items[0].getQuality());
+        assertEquals(-1, app.items[0].getSellIn());
+    }
+
+    @Test
+    void NormalItemConjured1() {
+        GuildedItem[] items = new GuildedItem[] { new GuildedItem("Normal", 10, 20, true) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+
+        assertEquals(18, app.items[0].getQuality()); // baisse de 2
+        assertEquals(9, app.items[0].getSellIn());
+    }
 }
