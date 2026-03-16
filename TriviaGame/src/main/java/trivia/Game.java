@@ -87,29 +87,26 @@ public class Game implements IGame {
    }
 
    private void askQuestion() {
-      if (currentCategory() == "Pop")
+      if (currentCategory().equals("Pop"))
          System.out.println(popQuestions.removeFirst());
-      if (currentCategory() == "Science")
+      if (currentCategory().equals("Science"))
          System.out.println(scienceQuestions.removeFirst());
-      if (currentCategory() == "Sports")
+      if (currentCategory().equals("Sports"))
          System.out.println(sportsQuestions.removeFirst());
-      if (currentCategory() == "Rock")
+      if (currentCategory().equals("Rock"))
          System.out.println(rockQuestions.removeFirst());
    }
 
 
    private String currentCategory() {
-      if (places[currentPlayer] - 1 == 0) return "Pop";
-      if (places[currentPlayer] - 1 == 4) return "Pop";
-      if (places[currentPlayer] - 1 == 8) return "Pop";
-      if (places[currentPlayer] - 1 == 1) return "Science";
-      if (places[currentPlayer] - 1 == 5) return "Science";
-      if (places[currentPlayer] - 1 == 9) return "Science";
-      if (places[currentPlayer] - 1 == 2) return "Sports";
-      if (places[currentPlayer] - 1 == 6) return "Sports";
-      if (places[currentPlayer] - 1 == 10) return "Sports";
-      return "Rock";
+      return switch ((places[currentPlayer] - 1) % 4) {
+         case 0 -> "Pop";
+         case 1 -> "Science";
+         case 2 -> "Sports";
+         default -> "Rock";
+      };
    }
+
 
    public boolean handleCorrectAnswer() {
       if (inPenaltyBox[currentPlayer]) {
