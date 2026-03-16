@@ -4,7 +4,8 @@ public enum Category {
     POP("Pop"),
     SCIENCE("Science"),
     SPORTS("Sports"),
-    ROCK("Rock");
+    ROCK("Rock"),
+    GEO("Geographie");
 
     public final String label;
 

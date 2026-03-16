@@ -87,12 +87,8 @@ public class Game implements IGame {
 
 
    public Category currentCategory() {
-      return switch ((currentPlayer().getPlace() - 1) % 4) {
-         case 0 -> Category.POP;
-         case 1 -> Category.SCIENCE;
-         case 2 -> Category.SPORTS;
-         default -> Category.ROCK;
-      };
+      int cat = (currentPlayer().getPlace() - 1) % Category.values().length;
+      return Category.values()[cat];
    }
 
 

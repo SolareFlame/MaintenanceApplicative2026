@@ -70,6 +70,12 @@ class NewGameTest {
     }
 
     @Test
+    void shouldBeGeoOnPlace5() {
+        game.roll(4);
+        assertEquals("Geographie", game.currentCategory().toString());
+    }
+
+    @Test
     void shouldSwitchToNextPlayerAfterCorrectAnswer() {
         game.roll(1);
         game.handleCorrectAnswer();
