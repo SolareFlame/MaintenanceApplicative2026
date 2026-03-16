@@ -11,6 +11,7 @@ public class Game implements IGame {
 
    // CONFIGURATION DU JEU
    private static final int QUESTION_COUNT = 50;
+   private static final int WINNING_GOLD_COINS = 6;
 
 
    ArrayList<Player> players = new ArrayList<>();
@@ -142,6 +143,6 @@ public class Game implements IGame {
    }
 
    private boolean didPlayerWin() {
-      return !(currentPlayer().getPurse() == 6);
+      return !(currentPlayer().getPurse() == WINNING_GOLD_COINS);
    }
 }
