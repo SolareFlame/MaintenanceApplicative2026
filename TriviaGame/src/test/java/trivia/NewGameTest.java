@@ -174,4 +174,60 @@ class NewGameTest {
         boolean result = game.handleCorrectAnswer();
         assertFalse(result);
     }
+
+
+    @Test
+    void shouldNotAddPlayerAfterGameStarted() {
+        game.roll(1);
+        boolean result = game.addPlayer("AA");
+        assertFalse(result);
+        assertEquals(2, game.players.size());
+    }
+
+    @Test
+    void shouldAddPlayerBeforeGameStarted() {
+        Game g = new Game();
+        boolean result = g.addPlayer("AA");
+        assertTrue(result);
+        assertEquals(1, g.players.size());
+    }
+
+    @Test
+    void shouldNotAddPlayerAfterWrongAnswer() {
+        game.roll(1);
+        game.wrongAnswer();
+        boolean result = game.addPlayer("BB");
+        assertFalse(result);
+        assertEquals(2, game.players.size());
+    }
+
+    @Test
+    void shouldNotAddPlayerAfterCorrectAnswer() {
+        game.roll(1);
+        game.handleCorrectAnswer();
+        boolean result = game.addPlayer("BB");
+        assertFalse(result);
+        assertEquals(2, game.players.size());
+    }
+
+    @Test
+    void shouldNotRollWithOnePlayer() {
+        Game g = new Game();
+        g.addPlayer("AAAAAA");
+        assertThrows(Exception.class, () -> g.roll(1));
+    }
+
+    @Test
+    void shouldNotRollWithNoPlayer() {
+        Game g = new Game();
+        assertThrows(Exception.class, () -> g.roll(1));
+    }
+
+    @Test
+    void shouldRollWithTwoPlayers() {
+        Game g = new Game();
+        g.addPlayer("AAAAAA");
+        g.addPlayer("BBBBBB");
+        assertDoesNotThrow(() -> g.roll(1));
+    }
 }

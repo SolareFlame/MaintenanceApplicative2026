@@ -19,6 +19,8 @@ public class Game implements IGame {
    int currentPlayerIndex = 0;
    boolean isGettingOutOfPenaltyBox;
 
+   boolean asStarted = false;
+
    public Game() {
       for (Category category : Category.values()) {
          for (int i = 0; i < QUESTION_COUNT; i++) {
@@ -28,6 +30,8 @@ public class Game implements IGame {
    }
 
    public boolean addPlayer(String name) {
+      if(asStarted) return false;
+
       //System.out.println("test");
       players.add(new Player(name));
 
@@ -41,7 +45,14 @@ public class Game implements IGame {
       return players.get(currentPlayerIndex);
    }
 
+   private boolean canStart() {
+      return players.size() >= 2;
+   }
+
    public void roll(int roll) {
+      if(!canStart()) throw new IllegalStateException("Need at least 2 players to start the game");
+      if(!asStarted) asStarted = true;
+
       Player player = currentPlayer();
 
       System.out.println(player + " is the current player");
