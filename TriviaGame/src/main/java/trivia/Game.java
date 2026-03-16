@@ -104,13 +104,11 @@ public class Game implements IGame {
             player.reward(1);
 
             boolean winner = didPlayerWin();
-            currentPlayerIndex++;
-            if (currentPlayerIndex == players.size()) currentPlayerIndex = 0;
+            nextPlayer();
 
             return winner;
          } else {
-            currentPlayerIndex++;
-            if (currentPlayerIndex == players.size()) currentPlayerIndex = 0;
+            nextPlayer();
             return true;
          }
 
@@ -122,8 +120,7 @@ public class Game implements IGame {
 
          boolean winner = didPlayerWin();
 
-         currentPlayerIndex++;
-         if (currentPlayerIndex == players.size()) currentPlayerIndex = 0;
+         nextPlayer();
 
          return winner;
       }
@@ -135,12 +132,14 @@ public class Game implements IGame {
       System.out.println("Question was incorrectly answered");
       player.goToPenaltyBox();
 
-      currentPlayerIndex++;
-      if (currentPlayerIndex == players.size()) currentPlayerIndex = 0;
+      nextPlayer();
 
       return true;
    }
 
+   private void nextPlayer() {
+      currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
+   }
 
    private boolean didPlayerWin() {
       return !(currentPlayer().getPurse() == 6);
