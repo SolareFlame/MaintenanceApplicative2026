@@ -48,27 +48,27 @@ public class Game implements IGame {
       System.out.println("They have rolled a " + roll);
 
       if (player.isInPenaltyBox()) {
-         if (roll % 2 != 0) {
-            isGettingOutOfPenaltyBox = true;
-            System.out.println(player + " is getting out of the penalty box");
-
-            player.move(roll);
-
-            System.out.println("The category is " + currentCategory()); //TODO move ça ailleurs (dans caté)
-            askQuestion();
-
-         } else {
-            System.out.println(player + " is not getting out of the penalty box");
-            isGettingOutOfPenaltyBox = false;
-         }
-
+         handlePenaltyBoxRoll(player, roll);
       } else {
-
-         player.move(roll);
-         System.out.println("The category is " + currentCategory()); //TODO move ça ailleurs (dans caté)
-
-         askQuestion();
+         moveAndAsk(player, roll);
       }
+   }
+
+   private void handlePenaltyBoxRoll(Player player, int roll) {
+      if (roll % 2 != 0) {
+         isGettingOutOfPenaltyBox = true;
+         System.out.println(player + " is getting out of the penalty box");
+         moveAndAsk(player, roll);
+      } else {
+         System.out.println(player + " is not getting out of the penalty box");
+         isGettingOutOfPenaltyBox = false;
+      }
+   }
+
+   private void moveAndAsk(Player player, int roll) {
+      player.move(roll);
+      System.out.println("The category is " + currentCategory());
+      askQuestion();
    }
 
    private void askQuestion() {
@@ -86,7 +86,7 @@ public class Game implements IGame {
    }
 
 
-   private Category currentCategory() {
+   public Category currentCategory() {
       return switch ((currentPlayer().getPlace() - 1) % 4) {
          case 0 -> Category.POP;
          case 1 -> Category.SCIENCE;
