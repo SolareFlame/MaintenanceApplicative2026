@@ -16,7 +16,6 @@ public class Game implements IGame {
 
    ArrayList<Player> players = new ArrayList<>();
    ArrayList<Question> questions = new ArrayList<>();
-
    int currentPlayerIndex = 0;
    boolean isGettingOutOfPenaltyBox;
 
@@ -29,6 +28,7 @@ public class Game implements IGame {
    }
 
    public boolean addPlayer(String name) {
+      //System.out.println("test");
       players.add(new Player(name));
 
       System.out.println(name + " was added");
@@ -56,6 +56,7 @@ public class Game implements IGame {
 
             System.out.println("The category is " + currentCategory()); //TODO move ça ailleurs (dans caté)
             askQuestion();
+
          } else {
             System.out.println(player + " is not getting out of the penalty box");
             isGettingOutOfPenaltyBox = false;
@@ -98,33 +99,23 @@ public class Game implements IGame {
    public boolean handleCorrectAnswer() {
       Player player = currentPlayer();
 
-      if (player.isInPenaltyBox()) {
-         if (isGettingOutOfPenaltyBox) {
-            System.out.println("Answer was corrent!!!!");
-
-            player.reward(1);
-
-            boolean winner = didPlayerWin();
-            nextPlayer();
-
-            return winner;
-         } else {
-            nextPlayer();
-            return true;
-         }
-
-
-      } else {
-
-         System.out.println("Answer was corrent!!!!");
-         player.reward(1);
-
-         boolean winner = didPlayerWin();
-
+      //skip le player pénalisé
+      if (player.isInPenaltyBox() && !isGettingOutOfPenaltyBox) {
          nextPlayer();
-
-         return winner;
+         return true;
       }
+
+      System.out.println("Answer was corrent!!!!");
+      player.reward(1);
+
+      if (isGettingOutOfPenaltyBox) {
+         player.outOfPenaltyBox();
+      }
+
+      boolean winner = didPlayerWin();
+      nextPlayer();
+
+      return !winner; //patch au reste du coté pas propre
    }
 
    public boolean wrongAnswer() {
@@ -143,6 +134,6 @@ public class Game implements IGame {
    }
 
    private boolean didPlayerWin() {
-      return !(currentPlayer().getPurse() == WINNING_GOLD_COINS);
+      return currentPlayer().getPurse() >= WINNING_GOLD_COINS;
    }
 }

@@ -36,7 +36,7 @@ public class GameOld implements IGame {
       return (howManyPlayers() >= 2);
    }
 
-   public boolean add(String playerName) {
+   public boolean addPlayer(String playerName) {
       places[howManyPlayers()] = 1;
       purses[howManyPlayers()] = 0;
       inPenaltyBox[howManyPlayers()] = false;
@@ -115,6 +115,9 @@ public class GameOld implements IGame {
    public boolean handleCorrectAnswer() {
       if (inPenaltyBox[currentPlayer]) {
          if (isGettingOutOfPenaltyBox) {
+
+            inPenaltyBox[currentPlayer] = false;
+
             System.out.println("Answer was corrent!!!!");
             purses[currentPlayer]++;
             System.out.println(players.get(currentPlayer)
