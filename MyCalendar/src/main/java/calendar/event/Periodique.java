@@ -1,13 +1,14 @@
 package calendar.event;
 
 import calendar.valueobject.DateEvenement;
+import calendar.valueobject.TitreEvenement;
 
 import java.time.LocalDateTime;
 
 public class Periodique extends Evenement {
     private int frequenceJours;
 
-    public Periodique(String title, String proprietaire, DateEvenement dateDebut, int frequenceJours) {
+    public Periodique(TitreEvenement title, String proprietaire, DateEvenement dateDebut, int frequenceJours) {
         super(title, proprietaire, dateDebut, 0);
         this.frequenceJours = frequenceJours;
     }

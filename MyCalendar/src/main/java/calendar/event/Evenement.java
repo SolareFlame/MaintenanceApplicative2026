@@ -1,17 +1,18 @@
 package calendar.event;
 
 import calendar.valueobject.DateEvenement;
+import calendar.valueobject.TitreEvenement;
 
 import java.time.LocalDateTime;
 
 public abstract class Evenement {
-    protected String title;
+    protected TitreEvenement title;
     protected String proprietaire;
 
     protected DateEvenement dateDebut;
     protected int dureeMinutes;
 
-    protected Evenement(String title, String proprietaire, DateEvenement dateDebut, int dureeMinutes) {
+    protected Evenement(TitreEvenement title, String proprietaire, DateEvenement dateDebut, int dureeMinutes) {
         this.title = title;
         this.proprietaire = proprietaire;
 
@@ -19,7 +20,7 @@ public abstract class Evenement {
         this.dureeMinutes = dureeMinutes;
     }
 
-    public String getTitle() {
+    public TitreEvenement getTitle() {
         return title;
     }
 

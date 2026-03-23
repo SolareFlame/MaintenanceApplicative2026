@@ -5,6 +5,7 @@ import calendar.event.Periodique;
 import calendar.event.RendezVous;
 import calendar.event.Reunion;
 import calendar.valueobject.DateEvenement;
+import calendar.valueobject.TitreEvenement;
 
 import java.time.LocalDateTime;
 import java.time.temporal.WeekFields;
@@ -185,7 +186,7 @@ public class Main {
                         System.out.print("Durée (en minutes) : ");
                         int duree = Integer.parseInt(scanner.nextLine());
 
-                        calendar.ajouter(new RendezVous(titre, utilisateur,
+                        calendar.ajouter(new RendezVous(new TitreEvenement(titre), utilisateur,
                                 new DateEvenement(annee, moisRdv, jourRdv, heure, minute), duree));
 
                         System.out.println("Événement ajouté.");
@@ -219,7 +220,7 @@ public class Main {
                             participants += ", " + scanner.nextLine();
                         }
 
-                        calendar.ajouter(new Reunion(titre2, utilisateur,
+                        calendar.ajouter(new Reunion(new TitreEvenement(titre2), utilisateur,
                                 new DateEvenement(annee2, moisRdv2, jourRdv2, heure2, minute2), duree2,
                                 lieu, Arrays.asList(participants.split(","))));
 
@@ -243,7 +244,7 @@ public class Main {
                         System.out.print("Frequence (en jours) : ");
                         int frequence = Integer.parseInt(scanner.nextLine());
 
-                        calendar.ajouter(new Periodique(titre3, utilisateur,
+                        calendar.ajouter(new Periodique(new TitreEvenement(titre3), utilisateur,
                                 new DateEvenement(annee3, moisRdv3, jourRdv3, heure3, minute3), frequence));
 
                         System.out.println("Événement ajouté.");
