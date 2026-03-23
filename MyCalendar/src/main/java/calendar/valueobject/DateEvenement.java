@@ -3,11 +3,11 @@ package calendar.valueobject;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public final class DateDebut {
+public final class DateEvenement {
 
     private final LocalDateTime valeur;
 
-    public DateDebut(int annee, int mois, int jour, int heure, int minute) {
+    public DateEvenement(int annee, int mois, int jour, int heure, int minute) {
 
         if (mois < 1 || mois > 12) throw new IllegalArgumentException("Mois invalide : " + mois);
         if (heure < 0 || heure > 23) throw new IllegalArgumentException("Heure invalide : " + heure);
@@ -16,7 +16,7 @@ public final class DateDebut {
         this.valeur = LocalDateTime.of(annee, mois, jour, heure, minute);
     }
 
-    private DateDebut(LocalDateTime valeur) {
+    private DateEvenement(LocalDateTime valeur) {
         this.valeur = valeur;
     }
 
@@ -40,26 +40,26 @@ public final class DateDebut {
         return valeur.getMinute();
     }
 
-    public boolean isBefore(DateDebut autre) {
+    public boolean isBefore(DateEvenement autre) {
         return valeur.isBefore(autre.valeur);
     }
 
-    public boolean isAfter(DateDebut autre) {
+    public boolean isAfter(DateEvenement autre) {
         return valeur.isAfter(autre.valeur);
     }
 
-    public DateDebut plusMinutes(int minutes) {
-        return new DateDebut(valeur.plusMinutes(minutes));
+    public DateEvenement plusMinutes(int minutes) {
+        return new DateEvenement(valeur.plusMinutes(minutes));
     }
 
-    public DateDebut plusJours(int jours) {
-        return new DateDebut(valeur.plusDays(jours));
+    public DateEvenement plusJours(int jours) {
+        return new DateEvenement(valeur.plusDays(jours));
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof DateDebut d)) return false;
+        if (!(o instanceof DateEvenement d)) return false;
         return Objects.equals(valeur, d.valeur);
     }
 
