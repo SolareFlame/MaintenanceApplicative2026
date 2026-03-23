@@ -1,11 +1,13 @@
 package calendar.event;
 
+import calendar.valueobject.DateEvenement;
+
 import java.time.LocalDateTime;
 
 public class Periodique extends Evenement {
     private int frequenceJours;
 
-    public Periodique(String title, String proprietaire, LocalDateTime dateDebut, int frequenceJours) {
+    public Periodique(String title, String proprietaire, DateEvenement dateDebut, int frequenceJours) {
         super(title, proprietaire, dateDebut, 0);
         this.frequenceJours = frequenceJours;
     }
@@ -15,11 +17,11 @@ public class Periodique extends Evenement {
     }
 
     @Override
-    public boolean estDansPeriode(LocalDateTime debut, LocalDateTime fin) {
-        LocalDateTime temp = dateDebut;
+    public boolean estDansPeriode(DateEvenement debut, DateEvenement fin) {
+        DateEvenement temp = dateDebut;
 
         while (temp.isBefore(debut)) {
-            temp = temp.plusDays(frequenceJours);
+            temp = temp.plusJours(frequenceJours);
         }
         return !temp.isAfter(fin);
     }

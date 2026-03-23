@@ -1,15 +1,17 @@
 package calendar.event;
 
+import calendar.valueobject.DateEvenement;
+
 import java.time.LocalDateTime;
 
 public abstract class Evenement {
     protected String title;
     protected String proprietaire;
 
-    protected LocalDateTime dateDebut;
+    protected DateEvenement dateDebut;
     protected int dureeMinutes;
 
-    protected Evenement(String title, String proprietaire, LocalDateTime dateDebut, int dureeMinutes) {
+    protected Evenement(String title, String proprietaire, DateEvenement dateDebut, int dureeMinutes) {
         this.title = title;
         this.proprietaire = proprietaire;
 
@@ -25,7 +27,7 @@ public abstract class Evenement {
         return proprietaire;
     }
 
-    public LocalDateTime getDateDebut() {
+    public DateEvenement getDateDebut() {
         return dateDebut;
     }
 
@@ -33,13 +35,13 @@ public abstract class Evenement {
         return dureeMinutes;
     }
 
-    public boolean estDansPeriode(LocalDateTime debut, LocalDateTime fin) {
+    public boolean estDansPeriode(DateEvenement debut, DateEvenement fin) {
         return !dateDebut.isBefore(debut) && !dateDebut.isAfter(fin);
     }
 
     public boolean chevauche(Evenement autre) {
-        LocalDateTime dateFin = dateDebut.plusMinutes(dureeMinutes);
-        LocalDateTime autreDateFin = autre.getDateDebut().plusMinutes(autre.getDureeMinutes());
+        DateEvenement dateFin = dateDebut.plusMinutes(dureeMinutes);
+        DateEvenement autreDateFin = autre.getDateDebut().plusMinutes(autre.getDureeMinutes());
 
         return dateDebut.isBefore(autreDateFin) && dateFin.isAfter(autre.getDateDebut());
     }

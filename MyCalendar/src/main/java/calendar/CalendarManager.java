@@ -1,6 +1,7 @@
 package calendar;
 
 import calendar.event.Evenement;
+import calendar.valueobject.DateEvenement;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ public class CalendarManager {
         events.add(e);
     }
 
-    public List<Evenement> eventsDansPeriode(LocalDateTime debut, LocalDateTime fin) {
+    public List<Evenement> eventsDansPeriode(DateEvenement debut, DateEvenement fin) {
         List<Evenement> result = new ArrayList<>();
 
         for (Evenement e : events) {

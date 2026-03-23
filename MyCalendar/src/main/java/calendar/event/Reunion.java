@@ -1,5 +1,7 @@
 package calendar.event;
 
+import calendar.valueobject.DateEvenement;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -7,7 +9,7 @@ public class Reunion extends Evenement {
     private String lieu;
     private List<String> participants;
 
-    public Reunion(String title, String proprietaire, LocalDateTime dateDebut, int dureeMinutes, String lieu, List<String> participants) {
+    public Reunion(String title, String proprietaire, DateEvenement dateDebut, int dureeMinutes, String lieu, List<String> participants) {
         super(title, proprietaire, dateDebut, dureeMinutes);
 
         this.lieu = lieu;
