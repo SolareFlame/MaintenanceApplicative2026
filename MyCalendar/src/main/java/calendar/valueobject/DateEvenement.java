@@ -2,6 +2,7 @@ package calendar.valueobject;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.Scanner;
 
 public final class DateEvenement {
 
@@ -66,8 +67,8 @@ public final class DateEvenement {
         return new DateEvenement(valeur.plusYears(annees));
     }
 
-    public DateEvenement moinsSecondes(int sec) {
-        return new DateEvenement(valeur.minusSeconds(sec));
+    public DateEvenement moinsMinutes(int minutes) {
+        return new DateEvenement(valeur.minusMinutes(minutes));
     }
 
     public DateEvenement moinsJours(int jours) {
