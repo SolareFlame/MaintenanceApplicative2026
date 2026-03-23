@@ -8,16 +8,18 @@ public final class DateEvenement {
     private final LocalDateTime valeur;
 
     public DateEvenement(int annee, int mois, int jour, int heure, int minute) {
-
         if (mois < 1 || mois > 12) throw new IllegalArgumentException("Mois invalide : " + mois);
         if (heure < 0 || heure > 23) throw new IllegalArgumentException("Heure invalide : " + heure);
         if (minute < 0 || minute > 59) throw new IllegalArgumentException("Minute invalide : " + minute);
-
         this.valeur = LocalDateTime.of(annee, mois, jour, heure, minute);
     }
 
     private DateEvenement(LocalDateTime valeur) {
         this.valeur = valeur;
+    }
+
+    public static DateEvenement depuis(LocalDateTime ldt) {
+        return new DateEvenement(ldt);
     }
 
     public int annee() {
@@ -54,6 +56,26 @@ public final class DateEvenement {
 
     public DateEvenement plusJours(int jours) {
         return new DateEvenement(valeur.plusDays(jours));
+    }
+
+    public DateEvenement plusMois(int mois) {
+        return new DateEvenement(valeur.plusMonths(mois));
+    }
+
+    public DateEvenement plusAnnees(int annees) {
+        return new DateEvenement(valeur.plusYears(annees));
+    }
+
+    public DateEvenement moinsSecondes(int sec) {
+        return new DateEvenement(valeur.minusSeconds(sec));
+    }
+
+    public DateEvenement moinsJours(int jours) {
+        return new DateEvenement(valeur.minusDays(jours));
+    }
+
+    public DateEvenement moinsMois(int mois) {
+        return new DateEvenement(valeur.minusMonths(mois));
     }
 
     @Override
