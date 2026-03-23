@@ -54,14 +54,48 @@ public class DateEvenementTest {
     @Test
     public void plusMinutes() {
         DateEvenement debut = new DateEvenement(2025, 1, 1, 23, 30);
-        DateEvenement fin   = debut.plusMinutes(60);
-        assertEquals(new DateEvenement(2025, 1, 2, 0, 30), fin);
+        assertEquals(new DateEvenement(2025, 1, 2, 0, 30), debut.plusMinutes(60));
     }
 
     @Test
     public void plusJours() {
         DateEvenement debut = new DateEvenement(2025, 6, 1, 9, 0);
-        DateEvenement apres = debut.plusJours(7);
-        assertEquals(new DateEvenement(2025, 6, 8, 9, 0), apres);
+        assertEquals(new DateEvenement(2025, 6, 8, 9, 0), debut.plusJours(7));
+    }
+
+    @Test
+    public void plusMois() {
+        DateEvenement debut = new DateEvenement(2025, 1, 31, 9, 0);
+        assertEquals(new DateEvenement(2025, 2, 28, 9, 0), debut.plusMois(1));
+    }
+
+    @Test
+    public void plusAnnees() {
+        DateEvenement debut = new DateEvenement(2025, 6, 1, 9, 0);
+        assertEquals(new DateEvenement(2026, 6, 1, 9, 0), debut.plusAnnees(1));
+    }
+
+    @Test
+    public void moinsSecondes() {
+        DateEvenement debut = new DateEvenement(2025, 6, 1, 0, 0);
+        assertEquals(new DateEvenement(2025, 5, 31, 23, 59), debut.moinsSecondes(1));
+    }
+
+    @Test
+    public void moinsJours() {
+        DateEvenement debut = new DateEvenement(2025, 6, 8, 9, 0);
+        assertEquals(new DateEvenement(2025, 6, 1, 9, 0), debut.moinsJours(7));
+    }
+
+    @Test
+    public void moinsMois() {
+        DateEvenement debut = new DateEvenement(2025, 3, 1, 9, 0);
+        assertEquals(new DateEvenement(2025, 2, 1, 9, 0), debut.moinsMois(1));
+    }
+
+    @Test
+    public void depuis_localDateTime() {
+        DateEvenement d = DateEvenement.depuis(java.time.LocalDateTime.of(2025, 6, 1, 9, 0));
+        assertEquals(new DateEvenement(2025, 6, 1, 9, 0), d);
     }
 }
