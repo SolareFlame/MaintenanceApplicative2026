@@ -1,14 +1,16 @@
+package calendar;
+
 import java.time.LocalDateTime;
 
 public class Event {
-    public String type; // "RDV_PERSONNEL", "REUNION", "PERIODIQUE"
-    public String title;
-    public String proprietaire;
-    public LocalDateTime dateDebut;
-    public int dureeMinutes;
-    public String lieu; // utilisé seulement pour REUNION
-    public String participants; // séparés par virgules (pour REUNION uniquement)
-    public int frequenceJours; // uniquement pour PERIODIQUE
+    private String type;
+    private String title;
+    private String proprietaire;
+    private LocalDateTime dateDebut;
+    private int dureeMinutes;
+    private String lieu;
+    private String participants;
+    private int frequenceJours;
 
     public Event(String type, String title, String proprietaire, LocalDateTime dateDebut, int dureeMinutes,
                  String lieu, String participants, int frequenceJours) {
@@ -21,6 +23,15 @@ public class Event {
         this.participants = participants;
         this.frequenceJours = frequenceJours;
     }
+
+    public String getType()             { return type; }
+    public String getTitle()            { return title; }
+    public String getProprietaire()     { return proprietaire; }
+    public LocalDateTime getDateDebut() { return dateDebut; }
+    public int getDureeMinutes()        { return dureeMinutes; }
+    public String getLieu()             { return lieu; }
+    public String getParticipants()     { return participants; }
+    public int getFrequenceJours()      { return frequenceJours; }
 
     public String description() {
         String desc = "";
