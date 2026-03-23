@@ -76,9 +76,9 @@ public class DateEvenementTest {
     }
 
     @Test
-    public void moinsSecondes() {
-        DateEvenement debut = new DateEvenement(2025, 6, 1, 0, 0);
-        assertEquals(new DateEvenement(2025, 5, 31, 23, 59), debut.moinsSecondes(1));
+    public void moinsMinutes() {
+        DateEvenement debut = new DateEvenement(2025, 6, 8, 9, 30);
+        assertEquals(new DateEvenement(2025, 6, 8, 9, 0), debut.moinsMinute(30));
     }
 
     @Test
